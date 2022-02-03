@@ -1,27 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-function buttonText() {
-    return "Click Me !";
-}
+import React from "react";
+import ReactDOM from "react-dom";
+import SingleComment from "./SingleComment"
+import UserCard from "./UserCard"
+import avatar1 from "./images/image-1.jpg"
+import avatar2 from "./images/image-2.jpg"
+import avatar3 from "./images/image-3.jpg"
 
 const App = () => {
-
-    {/* binding variables */ }
-
-    const buttonTextUnused = "Click Me";
-
-    {/* defining objects */}
-    const myObj = { text: "Click Me" };
-    {/* can use object as myObj.text */}
-
     return (
-        <div>
-            <label htmlFor="email">Email </label>
-            {/* class defination className */}
-            <input type="text" className="form-control" id="email"></input>
-            {/* inline styles in JSX & binding variables */}
-            <button style={{ backgroundColor: 'red',color: 'white' }}>{ buttonText() }</button>
+        <div className="ui comments">
+            <UserCard>
+                <SingleComment
+                    author="John"
+                    date="Today at 5:00 PM"
+                    text="Great Job"
+                    avatar={avatar1}
+                />
+            </UserCard>
+            <UserCard>
+                <SingleComment
+                    author="Doe"
+                    date="Today at 6:00 PM"
+                    text="Thanks"
+                    avatar={avatar2}
+                />
+            </UserCard>
+            <UserCard>
+                <SingleComment
+                    author="Cena"
+                    date="Today at 7:00 PM"
+                    text="This is amazing!"
+                    avatar={avatar3}
+                />
+            </UserCard>
+
         </div>
     )
 }
