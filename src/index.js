@@ -1,19 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import HamisphereDisplay from "./components/HamisphereDisplay"
 
 class App extends React.Component {
 
-    constructor(props) {
-        super(props)
+    state = { latitude: 0 ,errorMessage: ''}
 
-        this.state = { latitude: 0}
-
+    componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
             (position) => {
-                this.setState({ latitude: position.coords.latitude,  errorMessage: '' })
+                this.setState({ latitude: position.coords.latitude, errorMessage: '' })
             },
             (error) => this.setState({ errorMessage: error.message })
         );
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate');
     }
 
     render() {
@@ -22,7 +25,7 @@ class App extends React.Component {
             return <div> Error : {this.state.errorMessage}</div>
         }
         if (!this.state.errorMessage && this.state.latitude) {
-            return <div> Latitude is: {this.state.latitude} </div>
+            return <div> <HamisphereDisplay latitude={this.state.latitude} /> </div>
         }
         else {
             return <div>Loading...</div>
